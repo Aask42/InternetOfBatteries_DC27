@@ -1,0 +1,11 @@
+.pio
+.pioenvs
+.piolibdeps
+.vscode
+src/leds-data.h
+src/leds-setup.h
+src/html*.h
+platform-comports.ini
+lib/Adafruit INA219_ID160/.github
+lib/Adafruit INA219_ID160/assets
+lib/Adafruit INA219_ID160/.library.json

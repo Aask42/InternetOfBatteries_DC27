@@ -1,0 +1,51 @@
+// We got a hundred miles to DEF CON, a full tank of gas, half a pack of circuits, it's dark, and we're wearing sunglasses
+
+bounce!:
+
+move led_100 * 100 150
+
+wait led_100 >= 24.0
+move led_80 * 0 150
+
+move led_80 * 100 150
+
+wait led_80 >= 30.0
+
+move led_60 * 100 150
+move led_100 * 0 150
+
+wait led_60 >= 60.0
+
+move led_40 * 100 150
+move led_80 * 0 150
+
+wait led_40 >= 95.0
+
+move led_20 * 100 150
+move led_60 * 0 150
+
+// Change direction!
+
+wait led_20 >= 95.0
+move led_40 * 0 150
+
+wait led_40 <= 0
+
+move led_40 * 100 150
+
+wait led_40 >= 60.0
+move led_20 * 0 150
+
+move led_60 * 100 150
+
+wait led_60 >= 30.0
+move led_40 * 0 150
+
+move led_80 * 100 150
+
+wait led_80 >= 24.0
+move led_60 * 0 150
+
+// BOING!!!!
+//goto bounce!
+stop

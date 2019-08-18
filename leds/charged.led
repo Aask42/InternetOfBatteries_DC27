@@ -1,0 +1,161 @@
+// Pikachu I choose YOU!
+
+charged:
+//loop up
+move led_20 * 100 150
+wait led_20 >= 75.0
+
+move led_40 * 100 150
+wait led_40 >= 75.0
+
+move led_60 * 100 150
+wait led_60 >= 75.0
+
+move led_80 * 100 150
+wait led_80 >= 75.0
+
+move led_100 * 100 150
+wait led_100 >= 75.0
+
+// loop down
+move led_20 * 0 150
+wait led_20 <= 25.0
+
+move led_40 * 0 150
+wait led_40 <= 25.0
+
+move led_60 * 0 150
+wait led_60 <= 25.0
+
+move led_80 * 0 150
+wait led_80 <= 25.0
+
+move led_100 * 0 150
+wait led_100 <= 25.0
+
+move led_20 * 100 150
+wait led_20 >= 75.0
+
+move led_40 * 100 150
+wait led_40 >= 75.0
+
+move led_60 * 100 150
+wait led_60 >= 75.0
+
+move led_80 * 100 150
+wait led_80 >= 75.0
+
+move led_100 * 100 150
+wait led_100 >= 75.0
+
+move led_20 * 0 150
+wait led_20 <= 25.0
+
+move led_40 * 0 150
+wait led_40 <= 25.0
+
+move led_60 * 0 150
+wait led_60 <= 25.0
+
+move led_80 * 0 150
+wait led_80 <= 25.0
+
+move led_100 * 0 150
+wait led_100 <= 25.0
+
+move led_20 * 100 150
+wait led_20 >= 75.0
+
+move led_40 * 100 150
+wait led_40 >= 75.0
+
+move led_60 * 100 150
+wait led_60 >= 75.0
+
+move led_80 * 100 150
+wait led_80 >= 75.0
+
+move led_100 * 100 150
+wait led_100 >= 75.0
+
+move led_20 * 0 150
+wait led_20 <= 25.0
+
+move led_40 * 0 150
+wait led_40 <= 25.0
+
+move led_60 * 0 150
+wait led_60 <= 25.0
+
+move led_80 * 0 150
+wait led_80 <= 25.0
+
+move led_100 * 0 150
+wait led_100 <= 25.0
+
+move led_20 * 100 150
+wait led_20 >= 75.0
+
+move led_40 * 100 150
+wait led_40 >= 75.0
+
+move led_60 * 100 150
+wait led_60 >= 75.0
+
+move led_80 * 100 150
+wait led_80 >= 75.0
+
+move led_100 * 100 150
+wait led_100 >= 75.0
+
+delay 840
+
+move led_100 * 0 50
+move led_80 * 0 50
+move led_60 * 0 50
+move led_40 * 0 50
+move led_20 * 0 50
+
+delay 210
+
+move led_100 * 100 50
+move led_80 * 100 50
+move led_60 * 100 50
+move led_40 * 100 50
+move led_20 * 100 50
+
+delay 420
+
+move led_100 * 0 50
+move led_80 * 0 50
+move led_60 * 0 50
+move led_40 * 0 50
+move led_20 * 0 50
+
+delay 210
+
+move led_100 * 100 50
+move led_80 * 100 50
+move led_60 * 100 50
+move led_40 * 100 50
+move led_20 * 100 50
+
+delay 420
+
+move led_100 * 0 50
+move led_80 * 0 50
+move led_60 * 0 50
+move led_40 * 0 50
+move led_20 * 0 50
+
+delay 210
+
+move led_100 * 100 50
+move led_80 * 100 50
+move led_60 * 100 50
+move led_40 * 100 50
+move led_20 * 100 50
+
+delay 1500
+
+goto charged

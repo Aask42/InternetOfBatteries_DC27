@@ -1,0 +1,90 @@
+// Ce n'est pas WyFy, C'est WEE FEE
+
+enable_wifi:
+
+move led_60 * 100 105
+
+delay 105
+
+move led_80 * 100 105
+move led_40 * 100 105
+
+delay 105
+
+move led_100 * 100 105
+move led_20 * 100 105
+
+delay 105
+
+move led_60 * 0 105
+
+delay 105
+
+move led_80 * 0 105
+move led_40 * 0 105
+
+delay 105
+
+move led_100 * 0 105
+move led_20 * 0 105
+
+delay 105
+
+move led_60 * 100 105
+
+delay 105
+
+move led_80 * 100 105
+move led_40 * 100 105
+
+delay 105
+
+move led_100 * 100 105
+move led_20 * 100 105
+
+delay 105
+
+move led_60 * 0 105
+
+delay 105
+
+move led_80 * 0 105
+move led_40 * 0 105
+
+delay 105
+
+move led_100 * 0 105
+move led_20 * 0 105
+
+delay 105
+
+move led_60 * 100 105
+
+delay 105
+
+move led_80 * 100 105
+move led_40 * 100 105
+
+delay 105
+
+move led_100 * 100 105
+move led_20 * 100 105
+
+delay 105
+
+move led_60 * 0 105
+
+delay 105
+
+move led_80 * 0 105
+move led_40 * 0 105
+
+delay 105
+
+move led_100 * 0 105
+move led_20 * 0 105
+
+delay 105
+
+//goto enable_wifi
+stop

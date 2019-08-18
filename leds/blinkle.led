@@ -1,0 +1,12 @@
+// Blinkle time!
+
+blink:
+MOVE led_100 * RAND 0 100 RAND 5 100
+MOVE led_80 * RAND 0 100 RAND 5 100
+MOVE led_60 * RAND 0 100 RAND 5 100
+MOVE led_40 * RAND 0 75 RAND 5 100
+MOVE led_20 * RAND 0 100 RAND 5 100
+
+delay RAND 50 100
+
+goto blink

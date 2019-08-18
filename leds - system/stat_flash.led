@@ -1,0 +1,6 @@
+loop:
+move stat 0 100 1000
+wait stat = 100
+move stat 100 0 1000
+wait stat = 0
+goto loop

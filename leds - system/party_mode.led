@@ -1,0 +1,13 @@
+set BATT 0.0
+set NODE 100.0
+
+PartyLoop:
+move BATT 0.0 100.0 500
+move NODE 100.0 0.0 500
+wait BATT = 100.0
+
+move BATT 100.0 0.0 500
+move NODE 0.0 100.0 500
+wait BATT = 0.0
+
+goto PartyLoop

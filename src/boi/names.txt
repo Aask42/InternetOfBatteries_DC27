@@ -1,0 +1,1 @@
+string names[11] = {"MORTY","TESLA","NIKOLA","TRUE","AASK","LIGHTNING","CPROSSU","NEO","DT","DAVE","TIM","B1UN7"}

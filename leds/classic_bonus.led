@@ -1,0 +1,93 @@
+// Have you ever even USED A BATTERY? THEN DON'T EXPECT ME TO KNOW EITHER!!!
+
+set led_20 0
+set led_40 0
+set led_60 0
+set led_80 0
+set led_100 0
+
+delay 500
+
+bonus_get:
+
+move led_20 * 100 150
+wait led_20 >= 75.0
+
+move led_40 * 100 400
+wait led_40 >= 75.0
+
+move led_60 * 100 500
+wait led_60 >= 80.0
+
+move led_80 * 100 700
+wait led_80 >= 85.0
+
+move led_100 * 100 1000
+wait led_100 >= 100.0
+
+delay 500
+
+move led_100 * 0 50
+move led_80 * 0 50
+move led_60 * 0 50
+move led_40 * 0 50
+move led_20 * 0 50
+
+delay 250
+
+move led_100 * 100 50
+move led_80 * 100 50
+move led_60 * 100 50
+move led_40 * 100 50
+move led_20 * 100 50
+
+delay 420
+
+move led_100 * 0 50
+move led_80 * 0 50
+move led_60 * 0 50
+move led_40 * 0 50
+move led_20 * 0 50
+
+delay 210
+
+move led_100 * 100 50
+move led_80 * 100 50
+move led_60 * 100 50
+move led_40 * 100 50
+move led_20 * 100 50
+
+delay 420
+
+move led_100 * 0 50
+move led_80 * 0 50
+move led_60 * 0 50
+move led_40 * 0 50
+move led_20 * 0 50
+
+delay 210
+
+move led_100 * 100 50
+move led_80 * 100 50
+move led_60 * 100 50
+move led_40 * 100 50
+move led_20 * 100 50
+
+delay 1500
+
+move led_20 * 0 150
+wait led_20 <= 25.0
+
+move led_40 * 0 150
+wait led_40 <= 25.0
+
+move led_60 * 0 150
+wait led_60 <= 25.0
+
+move led_80 * 0 150
+wait led_80 <= 25.0
+
+move led_100 * 0 150
+wait led_100 <= 0.0
+
+goto bonus_get

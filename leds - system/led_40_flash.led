@@ -1,0 +1,4 @@
+move led_40 * 300 150
+delay 150
+move led_40 * 0 150
+stop

@@ -1,0 +1,57 @@
+// We got a hundred miles to DEF CON, a full tank of gas, half a pack of circuits, it's dark, and we're wearing sunglasses
+
+set led_100 0
+set led_80 0
+set led_60 0
+set led_40 0
+set led_20 0
+
+larson:
+
+move led_100 * 100 50
+
+wait led_100 >= 95.0
+delay RAND 25 2000
+
+move led_100 * 0 50
+move led_80 * 100 50
+
+wait led_80 >= 95.0
+
+move led_80 * 0 50
+move led_60 * 100 50
+
+wait led_60 >= 95.0
+
+move led_60 * 0 50
+move led_40 * 100 50
+
+wait led_40 >= 95.0
+
+move led_40 * 0 50
+move led_20 * 100 50
+
+// Change direction!
+
+wait led_20 >= 95.0
+delay RAND 25 2000
+
+move led_40 * 100 50
+move led_20 * 0 50
+
+wait led_40 >= 95.0
+
+move led_60 * 100 50
+move led_40 * 0 50
+
+wait led_60 >= 95.0
+
+move led_80 * 100 50
+move led_60 * 0 50
+
+wait led_80 >= 95.0
+
+move led_80 * 0 50
+
+// Hit it. 
+goto larson

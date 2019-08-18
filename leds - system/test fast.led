@@ -1,0 +1,17 @@
+//a sample file to test with
+set led_80 100.0
+set led_60 50.0
+set led_40 25.0
+set led_20 12.5
+
+label1:
+//move an led from x to y over z milliseconds
+move led_100 0.0 300.0 1000
+move node 0.0 100.0 1000
+move stat 0.0 100.0 1000
+wait led_100 = 300.0
+move led_100 300.0 0.0 1000
+move node 100.0 0.0 1000
+move stat 100.0 0.0 1000
+wait led_100 = 0.0
+stop

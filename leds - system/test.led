@@ -1,0 +1,48 @@
+//a quick flast around of all LEDs to show they work
+set led_20 0.0
+set led_40 0.0
+set led_60 0.0
+set led_80 0.0
+set led_100 0.0
+set NODE 0.0
+set BATT 0.0
+set STAT 0.0
+set POUT 0.0
+
+move led_20 0.0 100.0 200
+wait led_20 = 100.0
+set led_20 0.0
+
+move led_40 0.0 100.0 200
+wait led_40 = 100.0
+set led_40 0.0
+
+move led_60 0.0 100.0 200
+wait led_60 = 100.0
+set led_60 0.0
+
+move led_80 0.0 100.0 200
+wait led_80 = 100.0
+set led_80 0.0
+
+move led_100 0.0 100.0 200
+wait led_100 = 100.0
+set led_100 0.0
+
+move NODE 0.0 100.0 200
+wait NODE = 100.0
+set NODE 0.0
+
+move BATT 0.0 100.0 200
+wait BATT = 100.0
+set BATT 0.0
+
+move STAT 0.0 100.0 200
+wait STAT = 100.0
+set STAT 0.0
+
+move POUT 0.0 100.0 200
+wait POUT = 100.0
+set POUT 0.0
+
+stop

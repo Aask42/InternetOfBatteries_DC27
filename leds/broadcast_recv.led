@@ -1,0 +1,51 @@
+// We got a hundred miles to DEF CON, a full tank of gas, half a pack of circuits, it's dark, and we're wearing sunglasses
+
+spring:
+
+move led_100 * 100 150
+
+wait led_100 >= 100.0
+move led_80 * 0 150
+
+wait led_80 <= 0
+
+move led_80 * 100 150
+
+wait led_80 >= 60.0
+
+move led_60 * 100 150
+move led_100 * 0 150
+
+wait led_60 >= 40.0
+
+move led_40 * 100 150
+move led_80 * 0 150
+
+wait led_40 >= 24.0
+
+move led_20 * 100 150
+move led_60 * 0 150
+
+// Change direction!
+
+wait led_20 >= 24.0
+move led_40 * 0 150
+
+move led_40 * 100 150
+
+wait led_40 >= 40.0
+move led_20 * 0 150
+
+move led_60 * 100 150
+
+wait led_60 >= 60.0
+move led_40 * 0 150
+
+move led_80 * 100 150
+
+wait led_80 >= 100.0
+move led_60 * 0 150
+
+// SPROING!!!!
+//goto spring
+stop

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Internet of Batteries: DEF CON 27 - "They don't support that"</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <h1 id="internet-of-batteries-def-con-27---%22they-dont-support-that%22">Internet of Batteries: DEF CON 27 - &quot;They don't support that&quot;</h1>
+<p><strong>BoI | Definition: Noun, Battery of Internets</strong></p>
+<p>Welcome to the Internet of Batteries: DEF CON 27 Edition! We've been told that the SAO standard &quot;doesn't support&quot; a battery back-powering the circuit on the VCC, which means we've done the most logical thing...Built a badge/SAO hybrid to support back-powering through it's pinout! While the badge is compatable with SAO 1.69bis, if plugged in to a DC27 badge it will most likely blow up the moon.</p>
+<p>This project created a simple (and mostly-safe) battery badge which back/forward-powers any electronic badge &amp; add-on via VCC pins, supplying a 500mA @ 3.3V while keeping track of how much power is drawn via backpowering and forward powering other badges and SAOs. This badge runs off of it's own power, and is able to operate as a standalone unit. To view power usage statistics users connect to the <strong>Captive Arcade<sup>TM</sup></strong> on the ESP32 to view local battery power consumption and discharge stats.</p>
+<p>Additionally, there is a WiFi Mesh Network (Itero) which powers the IoB. Through this network you can send broadcast messages to one big group chat, or sent PMs to up to 25 added devices. To scan for available nodes in the area, add other batteries to your &quot;friends&quot; list, and interact with group &amp; private chat, you will need to connect to the <strong>Captive Arcade<sup>TM</sup></strong>. When connected, &quot;Friends&quot; and scanned nodes will show green.</p>
+<h2 id="jump-start">Jump Start</h2>
+<ol>
+<li>Power switch ON to charge</li>
+<li>If LEDs flash on boot, boi is in safe mode, charge it</li>
+<li>BTN 1 on boot = force safe mode - faster charge</li>
+<li>BTN 1 + BTN 2 on boot = factory reset</li>
+<li>Orient VCC on headers</li>
+<li>Drink all the booze</li>
+<li>Hack all the things</li>
+<li>See you
+@DEFCON 28!</li>
+</ol>
+<h2 id="better-instructions">Better Instructions</h2>
+<ul>
+<li><strong>Power switch must be in the ON position to charge</strong></li>
+<li>If the battery voltage is TOO LOW, the LEDS will flash ONCE on reboot, then go dark and output current battery voltage on serial out (115200). Once above 3.7v the battery should show animation while charging if rebooted at that time</li>
+</ul>
+<p>There are FIVE buttons on the DC27 version of the Internet of Batteries:</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Description</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RESET</td>
+<td>This button is located on the BACK of the DEF CELL, under the battery next to the power switch</td>
+<td>This resets the Boi</td>
+</tr>
+<tr>
+<td>BTN 1</td>
+<td>Cycle mode, 2x toggles <strong>Captive Arcade<sup>TM</sup></strong></td>
+<td>CLK 1 : Capacity -&gt; Node Count -&gt; Party!!! <br/><br/>DBL CLK 1 : Toggle Captive Arcade</td>
+</tr>
+<tr>
+<td>BTN 2</td>
+<td>Toggles backpower on SAO rail on/off</td>
+<td>Auto-off if voltage is detected going the wrong way across the SHUNT resistor</td>
+</tr>
+<tr>
+<td>DEFLOCK</td>
+<td>Stealth touch button where it says &quot;DEF CON XXVII&quot; in the white strip at the top of the battery.</td>
+<td>Press and hold to cycle through and set light show for each mode</td>
+</tr>
+<tr>
+<td>BONUS</td>
+<td>Press and hold for a fun throwback, does not currently actually show capacity</td>
+<td>boop booP boOP bOOP BOOP! <strong>BOOP!</strong> <strong>BOOP!</strong> <strong>BOOP!</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boot-order">Boot Order</h2>
+<p>This is very important and will help to minimize blowing up like a Note in the sky</p>
+<ol start="0">
+<li>Detect power on rails: If voltage on LiPoly is too low, <strong>FLASH LEDS ONCE</strong> and boot in to &quot;Safe Mode&quot;</li>
+<li>Button assignment  : <code>BTN_PWR, BTN_ACT</code></li>
+<li>LED assignment  : <code>LED_LEV20, LED_LEV40, LED_LEV60, LED_LEV80, LED_LEV100, LED_S_NODE, LED_S_BATT, LED_POUT_ON</code></li>
+<li>DNS setup</li>
+<li>WiFi setup</li>
+<li>Enable <strong>Captive Arcade<sup>TM</sup></strong> if no password is set</li>
+<li>React to user input</li>
+<li>If voltage across shunt changes direction, and BACKPOWER is ON, force power state to NO_BACKPOWER</li>
+</ol>
+<h2 id="board-layout">Board Layout</h2>
+<p>Front:</p>
+<pre><code class="language-txt"><div>      _____
+ ____|ESP32|____ ---
+|USB |     |PWR | |   
+|STFF|_____|STFF| |   
+|    SAO SAO    | |	
+|USB            | | 
+|    Battery    |~6.5cm
+|    Goes       | |   
+|    Here       | |  
+|         INA219| |
+|SAO_SWITCH__SAO| |
+|_______________|---
+|-----~3.5cm----|
+
+Back: 
+      _____
+ ____|_____|____
+|               |
+| DEF CON XXIIV |
+|    SAO SAO  D |
+| BTN1 LED    E |
+| L L  LED    F |
+| E E  LED    C |
+| D D  LED    E |
+| BTN2 LED    L |
+|     SHUNT   L |
+|SAO_________SAO|
+</div></code></pre>
+<h2 id="how-to-flash-new-firmware">How to flash new firmware</h2>
+<p>Note: We had to modify the libraries for the Adafruit INA219 and ASyncTCP in order to pull this off. Copies are provided in the source repo and should auto-import on build with PlatformIO</p>
+<ol>
+<li>Install VS Code</li>
+<li>Install PlatformIO Extension</li>
+<li>Clone this repository and open in VS Code</li>
+<li>Plug Boi in to USB and identify the correct COM port if necessary (if only one COM device, should auto-select)</li>
+<li>Test build code with PlatformIO (CTRL+SHIFT+B)</li>
+<li>Upload code with PlatformIO (CTRL+SHIFT+U)</li>
+</ol>
+<p><strong>Note:</strong> There are preferences stored in flash which persist even when flashing updated code. To reset ALL data on the device you must perform a full flash reset from PlatformIO, then flash the desired version of the firmware to the now empty device</p>
+<h2 id="donations">Donations</h2>
+<pre><code><div>Bitcoin Cash is pretty sweet:  
+    1CbJsCqH9btitkRr13m11RribyF6m7EUTZ
+
+Bitcoin is cool too: 
+    1GrnYwUCAsQY3oejdu8CRutnG55Wi7bXHz  
+
+1 DOGE == 1 DOGE: 
+    DNsRM5gPEA5MrGByi1MyWfbLWyuksvK5fC    
+</div></code></pre>
+
+    </body>
+    </html>
