@@ -36,6 +36,7 @@ uint8_t TouchCount = 0;
 uint8_t SelectingLED = 0;
 uint8_t LastNodeCount = 0;
 uint8_t LEDCap = 5;
+uint8_t DoublePress_ACT = 0;
 
 // Create global boi class
 boi *Battery;
@@ -231,21 +232,19 @@ void loop() {
   }
 
   // Check to see if a button was pressed or other event triggered
-  uint8_t DoublePress_ACT = 0;
   if(Battery->button_pressed(boi::BTN_ACT))
   {
     Serial.println("Saw button BTN_ACT");
-
     //determine if this was a double click
     if((CurTime - LastButtonPressTime) <= 400000ULL)
-      DoublePress_ACT = 1;
-    else
-      LastButtonPressTime = CurTime;
+      DoublePress_ACT += 1;
+
+    LastButtonPressTime = CurTime;
   }
 
   //if ACTION button double pressed then swap the captive portal otherwise swap led options
-  if(DoublePress_ACT)
-  {      
+  if(DoublePress_ACT && (CurTime - LastButtonPressTime) > 500000ULL)
+  {
     if(BatteryWifi)
     {
       delete BatteryWifi;
@@ -256,15 +255,21 @@ void loop() {
       Prefs->putBool("wifi", false);
       Prefs->end();
     }
+    else if(DoublePress_ACT == 2)
+    {
+      BatteryWifi = new boi_wifi(Battery, MessageHandler, boi_wifi::BusinessCardMode);
+    }
     else
     {
-        BatteryWifi = new boi_wifi(Battery, MessageHandler, boi_wifi::NormalMode);
+      BatteryWifi = new boi_wifi(Battery, MessageHandler, boi_wifi::NormalMode);
     }
     LastButtonPressTime = 0;
+    DoublePress_ACT = 0;
   }
   else if(LastButtonPressTime && ((CurTime - LastButtonPressTime) > 500000ULL)) {
     //button was pressed in the past and was more than a half a second ago, do a light entry
     LastButtonPressTime = 0;
+    DoublePress_ACT = 0;
     
     // Only trigger on the first time around
     CurrentMode = (CurrentMode + 1) % 3;
