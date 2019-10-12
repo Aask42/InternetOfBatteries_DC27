@@ -285,20 +285,20 @@ def ParseLED(directory, filename, entrycount, initfile):
 
     filename = filename.replace(" ", "_")
     outfiledata = "const uint8_t led_%s[] = {\n" % (filename[0:-4].lower())
-    outfiledata += outhexdata[0:-2].encode("utf-8")
+    outfiledata += outhexdata[0:-2]
     outfiledata += "};\n"
     outfiledata += "#define led_%s_len %d\n" % (filename[0:-4].lower(), len(outdata))
     outfiledata += "#define LED_%s %d\n" % (filename[0:-4].upper(), entrycount)
-    initfile.write("LEDHandler->AddScript(LED_%s, led_%s, led_%s_len);\n" % (filename[0:-4].upper(), filename[0:-4].lower(), filename[0:-4].lower()))
+    initfile.write(("LEDHandler->AddScript(LED_%s, led_%s, led_%s_len);\n" % (filename[0:-4].upper(), filename[0:-4].lower(), filename[0:-4].lower())).encode("utf-8"))
 
-    return outfiledata
+    return outfiledata.encode("utf-8")
 
 def main():
     #convert led scripts over to a binary format included into the C code for being parsed
     f = open("src/leds-data.h", "wb")
     f2 = open("src/leds-setup.h", "wb")
 
-    f.write("#ifndef __leds_data_h\n#define __leds_data_h\n\n#define LED_ALL 0xffff\n\n")
+    f.write("#ifndef __leds_data_h\n#define __leds_data_h\n\n#define LED_ALL 0xffff\n\n".encode("utf-8"))
 
     count = 0
     for file in os.listdir("leds/."):
@@ -307,8 +307,8 @@ def main():
             f.write(ParseLED("leds", file, count, f2))
             count += 1
 
-    f.write("#define LED_SCRIPT_COUNT %d\n" % (count))
-    f.write("#define LED_SYSTEM_SCRIPT_START %d\n" % (count))
+    f.write(("#define LED_SCRIPT_COUNT %d\n" % (count)).encode("utf-8"))
+    f.write(("#define LED_SYSTEM_SCRIPT_START %d\n" % (count)).encode("utf-8"))
 
     systemcount = 0
     for file in os.listdir("leds - system/."):
@@ -318,9 +318,9 @@ def main():
             count += 1
             systemcount += 1
 
-    f.write("#define LED_SYSTEM_SCRIPT_COUNT %d\n" % (systemcount))
-    f.write("#define LED_TOTAL_SCRIPT_COUNT %d\n" % (count))
-    f.write("\n#endif\n")
+    f.write(("#define LED_SYSTEM_SCRIPT_COUNT %d\n" % (systemcount)).encode("utf-8"))
+    f.write(("#define LED_TOTAL_SCRIPT_COUNT %d\n" % (count)).encode("utf-8"))
+    f.write("\n#endif\n".encode("utf-8"))
     f.close()
     f2.close()
 main()

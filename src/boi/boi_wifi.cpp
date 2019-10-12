@@ -4,6 +4,7 @@
 #include "html-businesscard-header.h"
 #include "html-rick-header.h"
 #include "html-party-header.h"
+#include "html-resume-header.h"
 
 boi_wifi *_globalBoiWifi;
 pthread_mutex_t lock;
@@ -25,8 +26,11 @@ bool RequestHandler::canHandle(AsyncWebServerRequest *request){
 void RequestHandler::handleRequest(AsyncWebServerRequest *request) {
     Serial.printf("host: %s, url: %s\n", request->host().c_str(), request->url().c_str());
 
-    //if((request->host() == "1.1.1.1") || (request->url() == "/generate_204") || (request->url() == "/redirect"))
+    if((request->url() == "/whoami"))
     {
+        request->send(200, "text/html", HTMLResumeData);
+        
+    }else{
         //AsyncResponseStream *response = request->beginResponseStream("text/html");
         switch(Mode)
         {
