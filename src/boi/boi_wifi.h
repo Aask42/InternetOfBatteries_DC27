@@ -18,6 +18,11 @@ class RequestHandler : public AsyncWebHandler {
         RequestHandler();
         bool canHandle(AsyncWebServerRequest *request);
         void handleRequest(AsyncWebServerRequest *request);
+        void GuestCounter();
+        int CurrentGuestCount;
+    private:
+        Preferences preferences;
+
 };
 
 class boi_wifi

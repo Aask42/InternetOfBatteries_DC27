@@ -30,6 +30,11 @@ void RequestHandler::handleRequest(AsyncWebServerRequest *request) {
     {
         request->send(200, "text/html", HTMLResumeData);
         
+    }else if((request->url() == "/GuestCounter"))
+    {   
+        this->GuestCounter();
+
+        request->send(200, "text/html", String(this->CurrentGuestCount));
     }else{
         //AsyncResponseStream *response = request->beginResponseStream("text/html");
         switch(Mode)
@@ -185,7 +190,8 @@ void boi_wifi::monitor_captive_portal(){
 void boi_wifi::Reconfigure(const OptionsStruct *Options)
 {
     char WifiName[20 + 1 + 10];
-    uint8_t BatterySymbol[] = " \xF0\x9F\x94\x8B ";
+    // uint8_t BatterySymbol[] = " \xF0\x9F\x94\x8B ";
+    uint8_t BatterySymbol[] = " \xF0\x9F\x8E\x83 "; // SPOOKY EDITION OOOOOOOOOoOOOoOooooooooo.............
 
     memcpy(WifiName, &BatterySymbol[1], 5);
 
@@ -306,4 +312,15 @@ void boi_wifi::ActivateNormal()
     this->preferences.begin("options");
     this->preferences.putUChar("wifi", boi_wifi::NormalMode);
     this->preferences.end();
+}
+
+void RequestHandler::GuestCounter()
+{
+    Serial.println("Oh, a visitor!");   
+    // Increase guest counter by one 
+    this->preferences.begin("options");
+    this->CurrentGuestCount = this->preferences.getUInt("guest_counter", 0) + 1;
+    this->preferences.putUInt("guest_counter", this->CurrentGuestCount);
+    this->preferences.end();
+    Serial.printf("We have been visited %d times ^_^\n", this->CurrentGuestCount);
 }
